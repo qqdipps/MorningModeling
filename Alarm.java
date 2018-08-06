@@ -3,29 +3,39 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * object alarm: models behaviors of setting alarm, alarm going off and then being set to snooze,
- * and then going off again, # of times snooze occurs dependent on volume of alarm, 
- * time and alarm volume set is dependent on day 
- * @return
+ * object- alarm 
+ * Models attributes of alarm clock: time set, time going off, 
+ * snooze duration, sound of alarm.
+ * Models behavior of snooze and effect: 
+ * number of times snooze occurs dependent on volume of alarm, 
+ * time-set and alarm volume set is dependent on day, and effect on day.
+ * @author qqdipps
+ *
  */
 public class Alarm{
+	
 		/**
-		 * time alarm is set
+		 * Time alarm is set.
 		 */
-		public LocalTime AlarmSetTime ;
+		public LocalTime AlarmSetTime;
+	
+		
 		/**
-		 * time alarm goes off
+		 * Time alarm goes off.
 		 */
 		public LocalTime AlarmGoingOffTime;
+		
+		
 		/**
-		 * volume of alarm
+		 * Volume of alarm.
 		 */
 		public static int alarmVolume;
+		
+		
 		/**
-		 * constructor creates alarm object and initializes variables using parameters
-		 * of object passed from 
-		 * public static Alarm wakingUp(String dayOfWeek). 
-		 * variables are used in subsequent methods setAlarm() and snooze
+		 * Constructor creates alarm object and initializes variables using parameters
+		 * of object passed from public static Alarm wakingUp(String dayOfWeek). 
+		 * Variables are used in subsequent methods setAlarm() and snooze().
 		 * 
 		 * @param AlarmSetTime
 		 * @param alarmVolume
@@ -37,17 +47,20 @@ public class Alarm{
 			setAlarm();
 			snooze();
 		}
+		
+		
 		/**
-		 * prints to console alarm time and alarm sound
+		 * Prints to console alarm time and alarm sound.
 		 */
 		public void setAlarm(){	
 			System.out.print(AlarmGoingOffTime + " Ring!! Ring!! Buzzz!! Good Morning!!");
 		}		
+		
+		
 		/**
-		 * alarm volume determines how many times snooze occurs. Each time snooze occurs 
-		 * alarm is silenced for 5 mins. Alarm time is updated. calls setAlarm() which prints 
-		 * alarm time and alarm sound to console, also returns advice wake up time is > 20 mins
-		 * after set time.
+		 * Alarm volume determines how many times snooze occurs. Each time snooze occurs 
+		 * alarm is silenced for 5 mins. Alarm time is updated. Calls setAlarm() which prints 
+		 * alarm time and alarm sound to console. Prints advice based on wakeup time.
 		 * @return
 		 */
 		public String snooze(){
@@ -68,11 +81,14 @@ public class Alarm{
 			String AlarmGoingOff = AlarmGoingOffTime.toString();
 			System.out.println(" ");
 			System.out.println(advice);
-			return AlarmGoingOff;	}
+			return AlarmGoingOff;	
+		}
+		
+		
 		/**
-		 * method uses switch to call to create object based on day of week passed
-		 * as parameter. method is static so able to be called in main method prior
-		 * to object created. includes additional print statement for day of week. 
+		 * Method uses switch to call to create object based on day of week passed
+		 * as parameter. Method is static so able to be called in main method prior
+		 * to object created. Includes additional print statement for day of week. 
 		 * @param dayOfWeek
 		 * @return
 		 */
@@ -97,34 +113,30 @@ public class Alarm{
 				case "Friday" :
 					System.out.println("FRIDAY!!!!");
 					Alarm FridaySetAlarm = new Alarm(LocalTime.of(8,0),6);
-					return FridaySetAlarm;
-				
+					return FridaySetAlarm;	
 			}
 			Alarm weekendSetAlarm = new Alarm(LocalTime.of(10,0),8);
 			System.out.println(" Go back to bed, its the weekend!!!"); 
 			System.out.println(" ");
 			return weekendSetAlarm;
 		}
+		
+	
 		/**
-		 * prints all scenarios to console
+		 * Main.
 		 * @param args
 		 */
-			public static void main(String[] args)  {
-				
-				String[] daysOfWeek = { "Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-				for(int i = 0; i < daysOfWeek.length; i++) {
-					wakingUp(daysOfWeek[i]);
-					System.out.println(" ");
-				}
+		public static void main(String[] args)  {
+	
 			
-		}
-				
-
-		
-		
-		
-
-
-			
+			/**
+			 * Prints all scenarios to console.
+			 */
+			String[] daysOfWeek = { "Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+			for(int i = 0; i < daysOfWeek.length; i++) {
+				wakingUp(daysOfWeek[i]);
+				System.out.println(" ");
+			}	
+		}		
 	}
 
